@@ -141,12 +141,25 @@ async function getRunningContainers() {
   }
 }
 
-function buildCard(container, metadata) {
+function getRequestBase(req) {
+  const forwardedProto = req.get('x-forwarded-proto');
+  const protocol = forwardedProto ? forwardedProto.split(',')[0].trim() : req.protocol || 'http';
+
+  const forwardedHost = req.get('x-forwarded-host');
+  const rawHost = (forwardedHost ? forwardedHost.split(',')[0].trim() : req.get('host') || '').trim();
+  const hostWithoutPort = rawHost.replace(/:\d+$/, '');
+
+  return {
+    protocol,
+    host: hostWithoutPort || process.env.HOST_IP || 'localhost'
+  };
+}
+
+function buildCard(container, metadata, base) {
   const firstPort = container.ports[0];
   const port = firstPort?.publicPort || metadata?.defaultPort || null;
-  const ip = firstPort?.ip && firstPort.ip !== '0.0.0.0'
-    ? firstPort.ip
-    : process.env.HOST_IP || 'localhost';
+  const host = base?.host || process.env.HOST_IP || 'localhost';
+  const protocol = base?.protocol || 'http';
 
   return {
     id: metadata?.id || container.containerName,
@@ -162,33 +175,34 @@ function buildCard(container, metadata) {
     containerStatusText: container.containerStatusText,
     imageName: container.imageName,
     livePort: port,
-    liveIp: ip,
-    url: port ? `http://${ip}:${port}` : null,
+    liveIp: host,
+    url: port ? `${protocol}://${host}:${port}` : null,
     ports: container.ports
   };
 }
 
-async function getMergedCards({ includeHidden = false } = {}) {
+async function getMergedCards({ includeHidden = false, req } = {}) {
   const [containers, metadataEntries] = await Promise.all([
     getRunningContainers(),
     Promise.resolve(loadMetadata())
   ]);
 
   const metadataByContainer = new Map(metadataEntries.map(entry => [entry.containerName, entry]));
-  const cards = containers.map(container => buildCard(container, metadataByContainer.get(container.containerName)));
+  const base = req ? getRequestBase(req) : null;
+  const cards = containers.map(container => buildCard(container, metadataByContainer.get(container.containerName), base));
 
   return includeHidden ? cards : cards.filter(card => !card.hidden);
 }
 
 // Public portal cards (docker-driven, metadata-enhanced)
 app.get('/api/projects', async (req, res) => {
-  const cards = await getMergedCards({ includeHidden: false });
+  const cards = await getMergedCards({ includeHidden: false, req });
   res.json(cards);
 });
 
 // Admin endpoints for management UI
 app.get('/api/admin/containers', async (req, res) => {
-  const cards = await getMergedCards({ includeHidden: true });
+  const cards = await getMergedCards({ includeHidden: true, req });
   res.json(cards);
 });
 
