@@ -23,7 +23,7 @@ services:
       context: ./frontend
     container_name: dashboard-frontend
     ports:
-      - "3000:80"
+      - "8021:80"
     depends_on:
       - backend
     restart: unless-stopped

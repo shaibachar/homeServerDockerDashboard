@@ -15,7 +15,7 @@ A portal dashboard that exposes links and details for all your Docker projects. 
 # Build and start everything
 ./start.sh
 
-# Frontend: http://<HOST_IP>:3000
+# Frontend: http://<HOST_IP>:8021
 # Backend API: http://<HOST_IP>:8020/api/projects
 
 # Stop
@@ -59,7 +59,7 @@ A portal dashboard that exposes links and details for all your Docker projects. 
 cd backend && npm install && npm start   # http://localhost:8020
 
 # Frontend
-cd frontend && npm install && npm start  # http://localhost:3000
+cd frontend && npm install && npm start  # http://localhost:8021
 ```
 
 ## API

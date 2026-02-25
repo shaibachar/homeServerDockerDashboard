@@ -13,7 +13,7 @@
     "name": "Grafana",
     "description": "Analytics and monitoring platform",
     "containerName": "grafana",
-    "defaultPort": 3000,
+    "defaultPort": 8021,
     "image": "grafana.png",
     "tags": ["monitoring", "analytics"]
   },
