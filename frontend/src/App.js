@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ProjectCard from './components/ProjectCard';
 import './App.css';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8020';
+// Default to same-origin so Docker/nginx proxying works without extra env config.
+const API_BASE = process.env.REACT_APP_API_URL || '';
 
 function App() {
   const [projects, setProjects] = useState([]);
