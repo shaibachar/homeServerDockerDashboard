@@ -9,8 +9,8 @@ services:
       - "5000:5000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./projects.json:/app/../projects.json:ro
-      - ./resources:/app/../resources:ro
+      - ./projects.json:/projects.json:ro
+      - ./resources:/resources:ro
     environment:
       - PORT=5000
       - HOST_IP=${HOST_IP:-localhost}
