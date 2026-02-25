@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProjectCard from './components/ProjectCard';
 import './App.css';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8020';
 
 function App() {
   const [projects, setProjects] = useState([]);

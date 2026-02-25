@@ -6,13 +6,13 @@ services:
       context: ./backend
     container_name: dashboard-backend
     ports:
-      - "5000:5000"
+      - "8020:8020"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./projects.json:/projects.json:ro
       - ./resources:/resources:ro
     environment:
-      - PORT=5000
+      - PORT=8020
       - HOST_IP=${HOST_IP:-localhost}
     restart: unless-stopped
     networks:

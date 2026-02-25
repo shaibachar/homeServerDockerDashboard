@@ -13,4 +13,4 @@ docker-compose up --build -d
 echo ""
 echo "✅ Dashboard is running!"
 echo "   Frontend: http://$HOST_IP:3000"
-echo "   Backend API: http://$HOST_IP:5000/api/projects"
+echo "   Backend API: http://$HOST_IP:8020/api/projects"
