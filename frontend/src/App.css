@@ -32,6 +32,10 @@ body {
   color: #8b949e;
 }
 
+.admin-toggle {
+  margin-top: 1rem;
+}
+
 .App-main {
   padding: 2rem;
   max-width: 1400px;
@@ -53,4 +57,186 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
+}
+
+.portal-section,
+.admin-panel {
+  margin-bottom: 2rem;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.section-head h2 {
+  color: #e6edf3;
+  font-size: 1.2rem;
+}
+
+.section-head span {
+  color: #8b949e;
+  font-size: 0.9rem;
+}
+
+.admin-panel {
+  background: #11161d;
+  border: 1px solid #30363d;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1rem;
+}
+
+.admin-card {
+  border: 1px solid #30363d;
+  background: #161b22;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.admin-card.hidden-card {
+  opacity: 0.8;
+  border-color: #6e7681;
+}
+
+.admin-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.admin-card-header h3 {
+  font-size: 1rem;
+  color: #e6edf3;
+}
+
+.admin-card-header p {
+  font-size: 0.8rem;
+  color: #8b949e;
+  word-break: break-all;
+}
+
+.status-pill {
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  border: 1px solid #30363d;
+  white-space: nowrap;
+}
+
+.status-pill.running {
+  color: #3fb950;
+  border-color: #238636;
+}
+
+.status-pill.exited,
+.status-pill.unknown {
+  color: #8b949e;
+}
+
+.admin-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: #c9d1d9;
+  font-size: 0.85rem;
+}
+
+.admin-card input,
+.admin-card textarea {
+  width: 100%;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #e6edf3;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+}
+
+.admin-card textarea {
+  resize: vertical;
+}
+
+.admin-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.75rem;
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.btn {
+  border-radius: 8px;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #1f2937;
+  color: #e6edf3;
+  border-color: #374151;
+}
+
+.btn-secondary:hover {
+  background: #273244;
+}
+
+.btn-danger {
+  background: #3b1111;
+  color: #ffb4b4;
+  border-color: #7f1d1d;
+}
+
+.btn-danger:hover {
+  background: #4a1515;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .App-main {
+    padding: 1rem;
+  }
+
+  .App-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .section-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-card-header {
+    flex-direction: column;
+  }
 }
