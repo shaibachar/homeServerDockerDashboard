@@ -1,0 +1,38 @@
+[
+  {
+    "id": "portainer",
+    "name": "Portainer",
+    "description": "Docker container management UI",
+    "containerName": "portainer",
+    "defaultPort": 9000,
+    "image": "portainer.png",
+    "tags": ["docker", "management"]
+  },
+  {
+    "id": "grafana",
+    "name": "Grafana",
+    "description": "Analytics and monitoring platform",
+    "containerName": "grafana",
+    "defaultPort": 3000,
+    "image": "grafana.png",
+    "tags": ["monitoring", "analytics"]
+  },
+  {
+    "id": "prometheus",
+    "name": "Prometheus",
+    "description": "Monitoring system and time series database",
+    "containerName": "prometheus",
+    "defaultPort": 9090,
+    "image": "prometheus.png",
+    "tags": ["monitoring", "metrics"]
+  },
+  {
+    "id": "homeassistant",
+    "name": "Home Assistant",
+    "description": "Open source home automation platform",
+    "containerName": "homeassistant",
+    "defaultPort": 8123,
+    "image": "homeassistant.png",
+    "tags": ["home-automation", "iot"]
+  }
+]

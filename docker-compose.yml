@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: dashboard-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./projects.json:/app/../projects.json:ro
+      - ./resources:/app/../resources:ro
+    environment:
+      - PORT=5000
+      - HOST_IP=${HOST_IP:-localhost}
+    restart: unless-stopped
+    networks:
+      - dashboard-net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: dashboard-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - dashboard-net
+
+networks:
+  dashboard-net:
+    driver: bridge
